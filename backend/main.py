@@ -11,10 +11,10 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "http://127.0.0.1:8080")
+FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN", "*")  # midlertidigt; stram til din frontend-URL senere
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_ORIGIN],
+    allow_origins=[FRONTEND_ORIGIN] if FRONTEND_ORIGIN != "*" else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
