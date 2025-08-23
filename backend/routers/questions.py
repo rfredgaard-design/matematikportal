@@ -2,7 +2,7 @@
 from fastapi import APIRouter, Query
 from sqlalchemy.orm import Session
 from ..database import SessionLocal
-from ..models import Assignment, Question
+from ..models import Question
 
 router = APIRouter(prefix="/questions", tags=["questions"])
 
@@ -33,5 +33,6 @@ def list_questions(assignment_id: int = Query(...), opgave_nr: int = Query(...))
         ]
     finally:
         db.close()
+
 
 
