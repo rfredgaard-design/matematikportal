@@ -1,8 +1,8 @@
 # backend/routers/layout.py
 from fastapi import APIRouter, Body
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from models import Assignment
+from ..database import SessionLocal
+from ..models import Assignment
 
 router = APIRouter(prefix="/layout", tags=["layout"])
 
@@ -94,5 +94,6 @@ def autogen_layout(
         return {"ok": True, "updated_layout_keys": [q.question_number for q in qs]}
     finally:
         db.close()
+
 
 
