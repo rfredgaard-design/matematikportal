@@ -91,3 +91,25 @@ function renderOverlay(){
     const rects = state.layout[q.question_number] || [];
     rects.forEach((r, idx)=>{
       const d = document.createElement('div');
+document.getElementById('saveLayout')?.addEventListener('click', saveLayout);
+
+document.getElementById('autoLayout')?.addEventListener('click', async () => {
+  try {
+    const params = new URLSearchParams({
+      opgave_nr: String(state.opgaveNr),
+      start_x: '40',
+      start_y: '80',
+      width: '300',
+      height: '40',
+      gap: '50'
+    });
+    const res = await fetch(`${API_BASE}/layout/1/autogen?` + params.toString(), { method: 'POST' });
+    const data = await res.json();
+    if (!res.ok || data.ok === false) throw new Error(data.error || 'Ukendt fejl');
+    // hent layout igen og tegn felter
+    await loadLayout();
+    alert('Auto-layout oprettet for opgave ' + state.opgaveNr);
+  } catch (e) {
+    alert('Kunne ikke autolave layout: ' + e.message);
+  }
+});
