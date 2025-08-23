@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Matematikportal – Frontend</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+  <script defer src="assets/config.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Matematikportal</div>
+    <div class="controls">
+      <label><input type="checkbox" id="toggleEditor"/> Editor-tilstand</label>
+      <label class="inline">Elev-id: <input id="elevId" type="text" size="8"/></label>
+      <label class="inline">Navn: <input id="elevNavn" type="text" size="12"/></label>
+      <button id="submitAnswers">Aflever</button>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="left">
+      <div class="titleRow">
+        <h2 id="title">Opgavesæt</h2>
+      </div>
+      <div id="board" class="board">
+        <img id="opgaveImg" alt="Opgave"/>
+        <div id="overlay" class="overlay"></div>
+      </div>
+    </section>
+    <aside class="right">
+      <div class="panel"><h3>Spørgsmål</h3><div id="qnList"></div></div>
+    </aside>
+  </main>
+</body>
+</html>
