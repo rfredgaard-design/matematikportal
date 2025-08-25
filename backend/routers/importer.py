@@ -1,9 +1,9 @@
 # backend/routers/importer.py
 from fastapi import APIRouter, UploadFile, File, Form
 from sqlalchemy.orm import Session
+import json
 from ..database import SessionLocal
 from ..models import Assignment, Question
-import json
 
 router = APIRouter(prefix="/import", tags=["import"])
 
@@ -45,4 +45,5 @@ def import_assignment(
         return {"assignment_id": a.id, "images": a.images, "title": a.title}
     finally:
         db.close()
+
 
