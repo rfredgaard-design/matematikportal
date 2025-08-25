@@ -1,21 +1,12 @@
-# backend/routers/questions.py
 from fastapi import APIRouter, Query
 from sqlalchemy.orm import Session
-
-try:
-    from ..database import SessionLocal
-    from ..models import Question
-except ImportError:
-    from database import SessionLocal
-    from models import Question
+from database import SessionLocal            # <-- ingen punktum
+from models import Question                  # <-- ingen punktum
 
 router = APIRouter(prefix="/questions", tags=["questions"])
 
 @router.get("")
-def list_questions(assignment_id: int = Query(...), opgave_nr: int = Query(...)):
-    """
-    Returnerer alle spørgsmål for en given assignment og opgavenummer (fx opgave 1 → "1.x").
-    """
+def list_questions(assignment_id: int, opgave_nr: int):
     prefix = f"{opgave_nr}."
     db: Session = SessionLocal()
     try:
@@ -38,8 +29,3 @@ def list_questions(assignment_id: int = Query(...), opgave_nr: int = Query(...))
         ]
     finally:
         db.close()
-
-
-
-
-
