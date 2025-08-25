@@ -27,3 +27,4 @@ app.include_router(questions_router)
 @app.get("/")
 def index():
     return {"ok": True}
+
