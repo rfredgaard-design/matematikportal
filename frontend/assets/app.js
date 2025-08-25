@@ -3,6 +3,19 @@
 
 const $ = (s)=>document.querySelector(s);
 
+img.onload = ()=>{
+  state.imgNatural.w = img.naturalWidth;
+  state.imgNatural.h = img.naturalHeight;
+  computeScale();
+
+  // NYT: giv overlay samme størrelse som billedet
+  const overlay = document.getElementById('overlay');
+  overlay.style.width  = img.clientWidth + 'px';
+  overlay.style.height = img.clientHeight + 'px';
+
+  renderOverlay();
+};
+
 const state = {
   editor: false,
   imagesBase: localStorage.getItem('imagesBase') || './images',
@@ -113,3 +126,4 @@ document.getElementById('autoLayout')?.addEventListener('click', async () => {
     alert('Kunne ikke autolave layout: ' + e.message);
   }
 });
+
