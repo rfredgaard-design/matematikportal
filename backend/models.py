@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text, DateTime, Float, JSON
 from datetime import datetime
-from .database import Base
+from database import Base   # <-- ingen punktum
 
 class Assignment(Base):
     __tablename__ = "assignments"
