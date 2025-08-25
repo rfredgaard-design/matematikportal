@@ -1,8 +1,14 @@
 # backend/routers/layout.py
 from fastapi import APIRouter, Body
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from models import Assignment
+
+# virker både som pakke ("from ..database") og mappe ("from database")
+try:
+    from ..database import SessionLocal
+    from ..models import Assignment
+except ImportError:  # fallback hvis rootDir=backend
+    from database import SessionLocal
+    from models import Assignment
 
 router = APIRouter(prefix="/layout", tags=["layout"])
 
@@ -94,6 +100,7 @@ def autogen_layout(
         return {"ok": True, "updated_layout_keys": [q.question_number for q in qs]}
     finally:
         db.close()
+
 
 
 
